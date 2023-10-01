@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_app/consts/global_colors.dart';
 import 'package:ecommerce_app/widgets/appbar_icons.dart';
+import 'package:ecommerce_app/widgets/feeds_widgets.dart';
 import 'package:ecommerce_app/widgets/sales_Widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -85,6 +86,38 @@ class _HomeScreenState extends State<HomeScreen> {
                           activeColor: Colors.redAccent,
                         )),
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      const Text(
+                        "Latest Product",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      const Spacer(),
+                      AppBarIicons(
+                          function: () {}, icon: IconlyBold.arrowRight2)
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: GridView.builder(
+                      // shrinkWrap: true,
+                      // physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 3,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 3,
+                              mainAxisSpacing: 0,
+                              childAspectRatio: 0.6),
+                      itemBuilder: (context, index) {
+                        return const FeedWidgets();
+                      }),
                 )
               ],
             ),
