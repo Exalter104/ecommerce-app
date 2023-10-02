@@ -13,6 +13,7 @@ class ProductDetaileScreen extends StatefulWidget {
 
 class _ProductDetaileScreenState extends State<ProductDetaileScreen> {
   final titleStyle = const TextStyle(fontSize: 24, fontWeight: FontWeight.bold);
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -32,43 +33,36 @@ class _ProductDetaileScreenState extends State<ProductDetaileScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Category",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                    style: titleStyle,
                   ),
                   const SizedBox(height: 18),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Flexible(
-                          flex: 3,
-                          child: Text(
-                            "Corn Plus",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          )),
-                      Flexible(
-                        flex: 1,
-                        child: RichText(
-                          text: TextSpan(
-                              text: "\$",
-                              style: const TextStyle(
-                                  fontSize: 14,
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.w600),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: " 160.00",
-                                    style: TextStyle(
-                                        color: lightTextColor,
-                                        fontWeight: FontWeight.w600))
-                              ]),
+                      Text("Corn Plus", style: titleStyle),
+                      RichText(
+                        text: TextSpan(
+                          text: "\$",
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.blue,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "160.00",
+                              style: TextStyle(
+                                color: lightTextColor,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(height: 15),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),

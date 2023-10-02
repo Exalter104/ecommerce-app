@@ -1,6 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_app/consts/global_colors.dart';
+import 'package:ecommerce_app/screens/categories_Screen.dart';
 import 'package:ecommerce_app/screens/feed_screen.dart';
+import 'package:ecommerce_app/screens/user_screen.dart';
 import 'package:ecommerce_app/widgets/appbar_icons.dart';
 import 'package:ecommerce_app/widgets/feeds_widgets.dart';
 import 'package:ecommerce_app/widgets/sales_Widget.dart';
@@ -33,9 +35,25 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
           appBar: AppBar(
             title: const Text("Home"),
-            leading: AppBarIicons(function: () {}, icon: IconlyBold.category),
+            leading: AppBarIicons(
+                function: () {
+                  Navigator.push(
+                      context,
+                      PageTransition(
+                          type: PageTransitionType.fade,
+                          child: const CategoriesScreen()));
+                },
+                icon: IconlyBold.category),
             actions: [
-              AppBarIicons(function: () {}, icon: IconlyBold.user3),
+              AppBarIicons(
+                  function: () {
+                    Navigator.push(
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.fade,
+                            child: const UserScreen()));
+                  },
+                  icon: IconlyBold.user3),
             ],
           ),
           body: Padding(
@@ -124,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    crossAxisSpacing: 3,
+                                    crossAxisSpacing: 0,
                                     mainAxisSpacing: 0,
                                     childAspectRatio: 0.6),
                             itemBuilder: (context, index) {
