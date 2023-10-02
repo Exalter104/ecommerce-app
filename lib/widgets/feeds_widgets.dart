@@ -6,8 +6,8 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:page_transition/page_transition.dart';
 
 class FeedWidgets extends StatelessWidget {
-  const FeedWidgets({super.key});
-
+  const FeedWidgets({super.key, required this.imageUrl, required this.title});
+  final String imageUrl, title;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

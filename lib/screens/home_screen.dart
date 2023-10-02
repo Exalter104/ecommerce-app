@@ -1,8 +1,10 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_app/consts/global_colors.dart';
+import 'package:ecommerce_app/models/products_model.dart';
 import 'package:ecommerce_app/screens/categories_Screen.dart';
 import 'package:ecommerce_app/screens/feed_screen.dart';
 import 'package:ecommerce_app/screens/user_screen.dart';
+import 'package:ecommerce_app/services/api_handler.dart';
 import 'package:ecommerce_app/widgets/appbar_icons.dart';
 import 'package:ecommerce_app/widgets/feeds_widgets.dart';
 import 'package:ecommerce_app/widgets/sales_Widget.dart';
@@ -18,11 +20,30 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<ProductsModel> productList = [];
+  @override
+  void didChangeDependencies() {
+    getProducts();
+    ApiHandler.getAllProducts();
+    super.didChangeDependencies();
+  }
+
+  Future<void> getProducts() async {
+    productList = await ApiHandler.getAllProducts();
+  }
+
   late TextEditingController _controller;
   @override
   void initState() {
     _controller = TextEditingController();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
@@ -146,7 +167,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                     mainAxisSpacing: 0,
                                     childAspectRatio: 0.6),
                             itemBuilder: (context, index) {
-                              return const FeedWidgets();
+                              return FeedWidgets(
+                                imageUrl: productList[index].images![0],
+                                title: productList[index].title![0],
+                              );
                             })
                       ],
                     ),
