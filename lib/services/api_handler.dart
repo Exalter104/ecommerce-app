@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:ecommerce_app/consts/api_url.dart';
+import 'package:ecommerce_app/models/categories_model.dart';
 import 'package:ecommerce_app/models/products_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,5 +15,16 @@ class ApiHandler {
       tempList.add(item);
     }
     return ProductsModel.productFromJson(tempList);
+  }
+
+  static Future<List<CategoryModel>> getAllCategories() async {
+    var response = await http.get(Uri.parse(baseUrl));
+
+    var data = jsonDecode(response.body);
+    List tempList = [];
+    for (var item in data) {
+      tempList.add(item);
+    }
+    return CategoryModel.categoriesFromJson(tempList);
   }
 }

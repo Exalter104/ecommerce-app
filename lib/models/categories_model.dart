@@ -1,27 +1,49 @@
-class Category {
+import 'package:flutter/foundation.dart';
+
+class CategoryModel {
   int? id;
-  String? name;
+  String? title;
+  double? price;
+  String? description;
+  String? category;
   String? image;
-  String? creationAt;
-  String? updatedAt;
 
-  Category({this.id, this.name, this.image, this.creationAt, this.updatedAt});
+  CategoryModel({
+    this.id,
+    this.title,
+    this.price,
+    this.description,
+    this.category,
+    this.image,
+  });
 
-  Category.fromJson(Map<String, dynamic> json) {
+  CategoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['name'];
+    title = json['title'];
+    price = json['price'];
+    description = json['description'];
+    category = json['category'];
     image = json['image'];
-    creationAt = json['creationAt'];
-    updatedAt = json['updatedAt'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
-    data['name'] = name;
+    data['title'] = title;
+    data['price'] = price;
+    data['description'] = description;
+    data['category'] = category;
     data['image'] = image;
-    data['creationAt'] = creationAt;
-    data['updatedAt'] = updatedAt;
+
     return data;
+  }
+
+  static List<CategoryModel> productFromJson(List productJson) {
+    if (kDebugMode) {
+      print("data ${productJson[0]}");
+    }
+    return productJson.map((data) {
+      return CategoryModel.fromJson(data);
+    }).toList();
   }
 }

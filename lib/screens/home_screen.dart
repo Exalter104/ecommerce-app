@@ -20,18 +20,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<ProductsModel> productList = [];
-  @override
-  void didChangeDependencies() {
-    getProducts();
-    ApiHandler.getAllProducts();
-    super.didChangeDependencies();
-  }
+  // List<ProductsModel> productList = [];
+  // void didChangeDependencies() {
+  //   getProducts();
+  //   ApiHandler.getAllProducts();
+  //   super.didChangeDependencies();
+  // }
 
-  Future<void> getProducts() async {
-    productList = await ApiHandler.getAllProducts();
-    setState(() {});
-  }
+  // Future<void> getProducts() async {
+  //   productList = await ApiHandler.getAllProducts();
+  //   setState(() {});
+  // }
 
   late TextEditingController _controller;
   @override
@@ -43,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void dispose() {
     _controller.dispose();
-    // TODO: implement dispose
+
     super.dispose();
   }
 
@@ -157,7 +156,26 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        FeedGrid(productList: productList)
+                        FutureBuilder<List<ProductsModel>>(
+                            future: ApiHandler.getAllProducts(),
+                            builder: ((context, snapshott) {
+                              if (snapshott.connectionState ==
+                                  ConnectionState.waiting) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (snapshott.hasError) {
+                                return Text(
+                                    "An error occured ${snapshott.error}");
+                              } else if (snapshott.data == null) {
+                                return const Center(
+                                  child: Text("There is No product available"),
+                                );
+                              }
+
+                              return FeedGrid(productList: snapshott.data!);
+                            }))
+                        // FeedGrid(productList: productList)
                       ],
                     ),
                   ),

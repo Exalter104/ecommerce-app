@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:ecommerce_app/models/products_model.dart';
 import 'package:ecommerce_app/services/api_handler.dart';
 import 'package:ecommerce_app/widgets/feeds_grid.dart';

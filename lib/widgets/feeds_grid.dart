@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/models/products_model.dart';
 import 'package:ecommerce_app/widgets/feeds_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FeedGrid extends StatelessWidget {
   const FeedGrid({Key? key, required this.productList}) : super(key: key);
@@ -18,12 +19,8 @@ class FeedGrid extends StatelessWidget {
             mainAxisSpacing: 0,
             childAspectRatio: 0.6),
         itemBuilder: (context, index) {
-          return productList.isEmpty
-              ? Container()
-              : FeedWidgets(
-                  imageUrl: productList[index].image.toString(),
-                  title: productList[index].title!,
-                );
+          return ChangeNotifierProvider.value(
+              value: productList[index], child: const FeedWidgets());
         });
   }
 }

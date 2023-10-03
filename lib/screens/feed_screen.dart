@@ -2,6 +2,7 @@ import 'package:ecommerce_app/models/products_model.dart';
 import 'package:ecommerce_app/services/api_handler.dart';
 import 'package:ecommerce_app/widgets/feeds_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({
@@ -33,7 +34,9 @@ class _FeedScreenState extends State<FeedScreen> {
         title: const Text("All Products"),
       ),
       body: productList.isEmpty
-          ? Container()
+          ? const Center(
+              child: CircularProgressIndicator.adaptive(),
+            )
           : GridView.builder(
               // shrinkWrap: true,
               // physics: const NeverScrollableScrollPhysics(),
@@ -44,10 +47,8 @@ class _FeedScreenState extends State<FeedScreen> {
                   mainAxisSpacing: 0,
                   childAspectRatio: 0.6),
               itemBuilder: (context, index) {
-                return FeedWidgets(
-                  imageUrl: productList[index].image.toString(),
-                  title: productList[index].title!,
-                );
+                return ChangeNotifierProvider.value(
+                    value: productList[index], child: const FeedWidgets());
               }),
     );
   }

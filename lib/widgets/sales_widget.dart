@@ -69,7 +69,9 @@ class SaleWidgets extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(12.0),
               child: Image(
-                image: AssetImage("assets/images/seeds.png"),
+                image: AssetImage(
+                  "assets/images/sales.png",
+                ),
               ),
             ),
           )

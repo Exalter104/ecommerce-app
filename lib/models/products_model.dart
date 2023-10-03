@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-class ProductsModel {
+class ProductsModel with ChangeNotifier {
   int? id;
   String? title;
   num? price; // Change to num
