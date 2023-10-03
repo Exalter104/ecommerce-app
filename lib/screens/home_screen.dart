@@ -6,7 +6,7 @@ import 'package:ecommerce_app/screens/feed_screen.dart';
 import 'package:ecommerce_app/screens/user_screen.dart';
 import 'package:ecommerce_app/services/api_handler.dart';
 import 'package:ecommerce_app/widgets/appbar_icons.dart';
-import 'package:ecommerce_app/widgets/feeds_widgets.dart';
+import 'package:ecommerce_app/widgets/feeds_grid.dart';
 import 'package:ecommerce_app/widgets/sales_Widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> getProducts() async {
     productList = await ApiHandler.getAllProducts();
+    setState(() {});
   }
 
   late TextEditingController _controller;
@@ -156,22 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 3,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 0,
-                                    mainAxisSpacing: 0,
-                                    childAspectRatio: 0.6),
-                            itemBuilder: (context, index) {
-                              return FeedWidgets(
-                                imageUrl: productList[index].images![0],
-                                title: productList[index].title![0],
-                              );
-                            })
+                        FeedGrid(productList: productList)
                       ],
                     ),
                   ),

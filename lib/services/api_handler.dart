@@ -6,8 +6,7 @@ import 'package:http/http.dart' as http;
 
 class ApiHandler {
   static Future<List<ProductsModel>> getAllProducts() async {
-    var uri = Uri.https(baseUrl, "api/v1/products");
-    var response = await http.get(uri);
+    var response = await http.get(Uri.parse(baseUrl));
 
     var data = jsonDecode(response.body);
     List tempList = [];

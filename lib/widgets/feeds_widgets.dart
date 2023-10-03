@@ -67,21 +67,20 @@ class FeedWidgets extends StatelessWidget {
                     color: Colors.red,
                     size: 28,
                   ),
-                  imageUrl:
-                      "https://images.pexels.com/photos/54300/pexels-photo-54300.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                  imageUrl: imageUrl,
                   boxFit: BoxFit.fill,
                 ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Padding(
-                padding: EdgeInsets.all(8),
-                child: Text("title",
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Text(title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 2,
-                    style:
-                        TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
+                    style: const TextStyle(
+                        fontSize: 17, fontWeight: FontWeight.w700)),
               ),
               SizedBox(
                 height: size.height * 0.01,

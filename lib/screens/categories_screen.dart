@@ -1,8 +1,28 @@
+import 'package:ecommerce_app/models/products_model.dart';
+import 'package:ecommerce_app/services/api_handler.dart';
 import 'package:ecommerce_app/widgets/feeds_grid.dart';
 import 'package:flutter/material.dart';
 
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
+
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  List<ProductsModel> productList = [];
+  @override
+  void didChangeDependencies() {
+    getProducts();
+    ApiHandler.getAllProducts();
+    super.didChangeDependencies();
+  }
+
+  Future<void> getProducts() async {
+    productList = await ApiHandler.getAllProducts();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +40,7 @@ class CategoriesScreen extends StatelessWidget {
             mainAxisSpacing: 0,
           ),
           itemBuilder: (context, index) {
-            return const CategoryWidget();
+            return FeedGrid(productList: productList);
           }),
     );
   }

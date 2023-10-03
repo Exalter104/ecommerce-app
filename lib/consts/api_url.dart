@@ -1,1 +1,1 @@
-const String baseUrl = "api.escuelajs.co";
+const String baseUrl = "https://fakestoreapi.com/products";
